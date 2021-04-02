@@ -1,4 +1,4 @@
-package dev.voidbit.lapiz.entities;
+package dev.voidbit.lapiz;
 
 public class Student {
     public String getName() {

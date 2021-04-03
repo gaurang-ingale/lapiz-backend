@@ -11,7 +11,11 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public Student getStudentById(Long id) {
-        return studentRepository.getStudentById(id);
+    public Student getStudentById(Long id) throws StudentNotFoundException{
+        Student student =  studentRepository.getStudentById(id);
+        if(student == null){
+            throw new StudentNotFoundException();
+        }
+        return student;
     }
 }

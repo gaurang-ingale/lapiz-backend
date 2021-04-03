@@ -26,7 +26,8 @@ public class StudentControllerTest {
 
     @Test
     public void getStudentById_returnsStudentByID() throws Exception{
-        given(studentService.getStudentById(anyLong())).willReturn(new Student("Abra Cadabra"));
+        given(studentService.getStudentById(anyLong()))
+                .willReturn(new Student("Abra Cadabra"));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/student/1"))
                 .andExpect(status().isOk())

@@ -39,8 +39,7 @@ public class StudentControllerTest {
         given(studentService.getStudentById(anyLong())).willThrow(new StudentNotFoundException());
 
         mockMvc.perform(MockMvcRequestBuilders.get("/student/1"))
-                .andExpect(status().isNotFound())
-                .andExpect(jsonPath("name").value(null));
+                .andExpect(status().isNotFound());
     }
 
 }

@@ -12,6 +12,6 @@ public class StudentService {
     }
 
     public Student getStudentById(Long id) {
-        return null;
+        return studentRepository.getStudentById(id);
     }
 }

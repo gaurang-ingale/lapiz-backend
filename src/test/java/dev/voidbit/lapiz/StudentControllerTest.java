@@ -25,13 +25,22 @@ public class StudentControllerTest {
     private StudentService studentService;
 
     @Test
-    public void getStudent_returnsStudentByID() throws Exception{
-        given(studentService.getStudentById(anyLong())).willReturn(new Student(1L, "Abra Cadabra"));
+    public void getStudentById_returnsStudentByID() throws Exception{
+        given(studentService.getStudentById(anyLong())).willReturn(new Student("Abra Cadabra"));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/student/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("name").value("Abra Cadabra"))
-                .andExpect(jsonPath("id").value(1L));
+                .andExpect(jsonPath("name").value("Abra Cadabra"));
+                //.andExpect(jsonPath("id").value(1L));
+    }
+
+    @Test
+    public void getStudentById_notFound() throws Exception{
+        given(studentService.getStudentById(anyLong())).willThrow(new StudentNotFoundException());
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/student/1"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("name").value(null));
     }
 
 }

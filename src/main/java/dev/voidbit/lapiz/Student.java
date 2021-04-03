@@ -1,9 +1,10 @@
 package dev.voidbit.lapiz;
 
-import org.springframework.data.annotation.Id;
-
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class Student {
     @Id
     @GeneratedValue
@@ -11,9 +12,12 @@ public class Student {
 
     private String name;
 
-    public Student(Long id, String name) {
+    public Student(){
+
+    }
+
+    public Student(String name) {
         this.name = name;
-        this.id = id;
     }
 
     public String getName() {

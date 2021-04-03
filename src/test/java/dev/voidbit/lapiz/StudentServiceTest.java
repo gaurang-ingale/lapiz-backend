@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 
@@ -24,11 +25,22 @@ public class StudentServiceTest {
     }
 
     @Test
-    public void getStudentById_returnsStudent(){
+    public void getStudentById_returnsStudent() throws Exception{
         given(studentRepository.getStudentById(anyLong()))
                 .willReturn(new Student("Abra Cadabra"));
 
         Assertions.assertThat(studentService.getStudentById(1L).getName()).isEqualTo("Abra Cadabra");
+    }
+
+    @Test
+    public void getStudentById_notFound() throws Exception{
+        given(studentRepository.getStudentById(anyLong()))
+                .willReturn(null);
+        assertThrows(StudentNotFoundException.class,
+                () -> {
+                    studentService.getStudentById(1L);
+                }
+        );
     }
 
 }

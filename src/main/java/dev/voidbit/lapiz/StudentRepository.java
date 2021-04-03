@@ -1,11 +1,8 @@
 package dev.voidbit.lapiz;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class StudentRepository {
+public interface StudentRepository extends JpaRepository<Student, Long>{
 
-    public Student getStudentById(Long id) {
-        return null;
-    }
+    public Student getStudentById(Long id);
 }

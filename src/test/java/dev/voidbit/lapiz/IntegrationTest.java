@@ -24,7 +24,7 @@ public class IntegrationTest {
         //assert
         Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         Assertions.assertThat(response.getBody().getName()).isEqualTo("Abra Cadabra");
-        Assertions.assertThat(response.getBody().getID()).isEqualTo(1);
+        Assertions.assertThat(response.getBody().getId()).isEqualTo(1L);
 
     }
 }

@@ -1,11 +1,26 @@
 package dev.voidbit.lapiz;
 
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.GeneratedValue;
+
 public class Student {
-    public String getName() {
-        return null;
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String name;
+
+    public Student(Long id, String name) {
+        this.name = name;
+        this.id = id;
     }
 
-    public Long getID() {
-        return null;
+    public String getName() {
+        return this.name;
+    }
+
+    public Long getId() {
+        return this.id;
     }
 }

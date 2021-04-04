@@ -1,5 +1,6 @@
 package dev.voidbit.lapiz;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,5 +33,19 @@ public class SubjectServiceTest {
         //act and assert
         assertThat(subjectService.getSubjectById(1L).getName())
                 .isEqualTo("Computer Science");
+    }
+
+    @Test
+    public void getSubjectById_notFound() throws Exception{
+        //arrange
+        given(subjectRepository.getSubjectById(anyLong()))
+                .willReturn(null);
+
+        //assert
+        Assertions.assertThrows(SubjectNotFoundException.class,
+                    () -> {
+                        subjectService.getSubjectById(1L);
+                    }
+                );
     }
 }

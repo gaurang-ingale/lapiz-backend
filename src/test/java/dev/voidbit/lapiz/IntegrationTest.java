@@ -1,13 +1,13 @@
 package dev.voidbit.lapiz;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.DirtiesContext;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class IntegrationTest {
@@ -17,15 +17,14 @@ public class IntegrationTest {
     @Autowired
     private StudentRepository studentRepository;
 
-    @AfterEach
-    private void afterEach(){
-        studentRepository.deleteAll();
-    }
+    @Autowired
+    private SubjectRepository subjectRepository;
 
     @Test
+    @DirtiesContext
     public void getStudentByID_returnsStudent() throws Exception{
         //arrange
-        studentRepository.save(new Student(1L, "Abra Cadabra"));
+        studentRepository.saveAndFlush(new Student(1L, "Abra Cadabra"));
 
         //act
         ResponseEntity<Student> response = restTemplate.getForEntity("/student/1", Student.class);
@@ -37,8 +36,9 @@ public class IntegrationTest {
     }
 
     @Test
-    public void getSubjectById() throws Exception{
-        //arrange
+    @DirtiesContext
+    public void getSubjectById_returnsSubject() throws Exception{
+        subjectRepository.saveAndFlush(new Subject(1L, "Computer Science"));
 
         //act
         ResponseEntity<Subject> response = restTemplate.getForEntity("/subject/1", Subject.class);

@@ -2,12 +2,8 @@ package dev.voidbit.lapiz;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
@@ -37,6 +33,19 @@ public class IntegrationTest {
         //assert
         Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         Assertions.assertThat(response.getBody().getName()).isEqualTo("Abra Cadabra");
+        Assertions.assertThat(response.getBody().getId()).isEqualTo(1L);
+    }
+
+    @Test
+    public void getSubjectById() throws Exception{
+        //arrange
+
+        //act
+        ResponseEntity<Subject> response = restTemplate.getForEntity("/subject/1", Subject.class);
+
+        //assert
+        Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Assertions.assertThat(response.getBody().getName()).isEqualTo("Computer Science");
         Assertions.assertThat(response.getBody().getId()).isEqualTo(1L);
     }
 }

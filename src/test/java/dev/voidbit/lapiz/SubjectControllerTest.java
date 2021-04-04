@@ -36,4 +36,13 @@ public class SubjectControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("name").value("Computer Science"));
     }
+
+    @Test
+    public void getSubjectById_notFound() throws Exception{
+        //arrange
+
+        //act and assert
+        mockMvc.perform(MockMvcRequestBuilders.get("/subject/1"))
+                .andExpect(status().isNotFound());
+    }
 }

@@ -32,4 +32,13 @@ public class SubjectRepositoryTest {
         assertThat(response.getName()).isEqualTo("Computer Science");
         assertThat(response.getId()).isEqualTo(1L);
     }
+
+    @Test
+    public void getSubjectById_notFound() throws Exception{
+        //act
+        Subject subject = subjectRepository.getSubjectById(1L);
+
+        //assert
+        assertThat(subject).isNull();
+    }
 }

@@ -9,6 +9,10 @@ public class SubjectService {
     private SubjectRepository subjectRepository;
 
     public Subject getSubjectById(Long id) {
-        return subjectRepository.getSubjectById(id);
+        Subject subject = subjectRepository.getSubjectById(id);
+        if(subject == null){
+            throw new SubjectNotFoundException();
+        }
+        return subject;
     }
 }

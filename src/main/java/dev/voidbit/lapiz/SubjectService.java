@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class SubjectService {
-    private SubjectRepository repository;
+    private SubjectRepository subjectRepository;
 
     public Subject getSubjectById(Long id) {
-        return null;
+        return subjectRepository.getSubjectById(id);
     }
 }

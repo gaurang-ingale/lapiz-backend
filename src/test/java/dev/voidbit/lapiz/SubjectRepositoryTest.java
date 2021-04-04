@@ -22,7 +22,7 @@ public class SubjectRepositoryTest {
     @Test
     public void getSubjectById_returnsSubject() throws Exception{
         //arrange
-        Subject subject = testEntityManager.persistFlushFind(new Subject(1L, "Computer Science"));
+        Subject subject = testEntityManager.persistFlushFind(new Subject("Computer Science"));
         testEntityManager.detach(subject);
 
         //act

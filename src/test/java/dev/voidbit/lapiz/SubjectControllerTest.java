@@ -40,6 +40,8 @@ public class SubjectControllerTest {
     @Test
     public void getSubjectById_notFound() throws Exception{
         //arrange
+        given(subjectService.getSubjectById(anyLong()))
+                .willThrow(new SubjectNotFoundException());
 
         //act and assert
         mockMvc.perform(MockMvcRequestBuilders.get("/subject/1"))

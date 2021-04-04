@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
@@ -19,6 +20,7 @@ public class StudentRepositoryTest {
     private TestEntityManager testEntityManager;
 
     @Test
+    @DirtiesContext
     public void getStudentById_returnsStudent(){
         //arrange
         Student tmp = testEntityManager.persistFlushFind(new Student("Abra Cadabra"));
@@ -33,6 +35,7 @@ public class StudentRepositoryTest {
     }
 
     @Test
+    @DirtiesContext
     public void getStudentById_notFound(){
         //act
         Student student = studentRepository.getStudentById(1L);

@@ -21,12 +21,22 @@ public class StudentRepositoryTest {
     @Test
     public void getStudentById_returnsStudent(){
         //arrange
-        testEntityManager.persistFlushFind(new Student("Abra Cadabra"));
+        Student tmp = testEntityManager.persistFlushFind(new Student("Abra Cadabra"));
+        testEntityManager.detach(tmp);
 
         //act
         Student student = studentRepository.getStudentById(1L);
 
         //assert
         Assertions.assertThat(student.getName()).isEqualTo("Abra Cadabra");
+    }
+
+    @Test
+    public void getStudentById_notFound(){
+        //act
+        Student student = studentRepository.getStudentById(1L);
+
+        //assert
+        Assertions.assertThat(student).isEqualTo(null);
     }
 }

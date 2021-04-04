@@ -29,6 +29,7 @@ public class StudentRepositoryTest {
 
         //assert
         Assertions.assertThat(student.getName()).isEqualTo("Abra Cadabra");
+        Assertions.assertThat(student.getId()).isEqualTo(1L);
     }
 
     @Test

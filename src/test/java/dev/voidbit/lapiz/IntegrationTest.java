@@ -20,6 +20,9 @@ public class IntegrationTest {
     @Autowired
     private SubjectRepository subjectRepository;
 
+    @Autowired
+    private TeacherRepository teacherRepository;
+
     @Test
     @DirtiesContext
     public void getStudentByID_returnsStudent() throws Exception{
@@ -46,6 +49,19 @@ public class IntegrationTest {
         //assert
         Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         Assertions.assertThat(response.getBody().getName()).isEqualTo("Computer Science");
+        Assertions.assertThat(response.getBody().getId()).isEqualTo(1L);
+    }
+
+    @Test
+    @DirtiesContext
+    public void getTeacherById_returnsTeacher() throws Exception{
+        teacherRepository.saveAndFlush(new Teacher(1L, "Merlin Magic"));
+
+        //act
+        ResponseEntity<Teacher> response = restTemplate.getForEntity("/teacher/1", Teacher.class);
+
+        Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Assertions.assertThat(response.getBody().getName()).isEqualTo("Merlin Magic");
         Assertions.assertThat(response.getBody().getId()).isEqualTo(1L);
     }
 }

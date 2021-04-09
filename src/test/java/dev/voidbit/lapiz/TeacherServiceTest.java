@@ -37,9 +37,9 @@ public class TeacherServiceTest {
 
     @Test
     public void getTeacherById_notFound(){
-        //act
-        Teacher teacher = teacherService.getTeacherById(1L);
-        //assert
-        Assertions.assertThat(teacher).isNull();
+        //act and assert
+        org.junit.jupiter.api.Assertions.assertThrows(TeacherNotFoundException.class, () -> {
+            teacherService.getTeacherById(1L);
+        });
     }
 }

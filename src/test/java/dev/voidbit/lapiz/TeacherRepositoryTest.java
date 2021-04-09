@@ -22,8 +22,7 @@ public class TeacherRepositoryTest {
     @DirtiesContext
     public void getTeacherById_returnsTeacher() throws Exception{
         //arrange
-        Teacher tmp = testEntityManager.persistFlushFind(new Teacher(1L, "Merlin Magic"));
-        testEntityManager.detach(tmp);
+        Teacher tmp = testEntityManager.persistFlushFind(new Teacher("Merlin Magic"));
 
         //act
         Teacher teacher = teacherRepository.getTeacherById(1L);
@@ -36,8 +35,6 @@ public class TeacherRepositoryTest {
     @Test
     @DirtiesContext
     public void getTeacherById_notFound() throws Exception{
-        //arrange
-        testEntityManager.remove(new Teacher(1L, "Merlin Magic"));
         //act
         Teacher teacher = teacherRepository.getTeacherById(1L);
         //assert

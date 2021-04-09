@@ -29,7 +29,7 @@ public class CalendarControllerTest {
     public void getCalendarById_returnsCalendar() throws Exception{
         //arrange
         given(calendarService.getCalendarById(anyLong()))
-                .willReturn(new Calendar());
+                .willReturn(new Calendar(1L));
         //act and assert
         mockMvc.perform(MockMvcRequestBuilders.get("/calendar/1"))
                 .andExpect(status().isOk())

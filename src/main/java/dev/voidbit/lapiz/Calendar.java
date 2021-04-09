@@ -20,6 +20,7 @@ public class Calendar {
     @OneToOne
     private Student student;
     public Calendar(Long id) {
+        this.id = id;
     }
 
     public Calendar(Student student) {

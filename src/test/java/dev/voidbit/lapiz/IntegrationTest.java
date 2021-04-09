@@ -1,6 +1,8 @@
 package dev.voidbit.lapiz;
 
+import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
+import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -114,4 +116,18 @@ public class IntegrationTest {
         Assertions.assertThat(Objects.deepEquals(calendar, response.getBody()));
 
     }
+
+    @Test
+    @DirtiesContext
+    public void calendarsUserCanOnlyEitherBeATeacherOrAStudent() throws Exception{
+        //arrange
+        Calendar calendar1 = new Calendar(1L, new Teacher());
+        Calendar calendar2 = new Calendar(2L, new Student());
+
+        //assert
+        Assertions.assertThat(calendar1.getStudent()).isNull();
+        Assertions.assertThat(calendar2.getTeacher()).isNull();
+    }
+
+
 }

@@ -1,13 +1,8 @@
 package dev.voidbit.lapiz;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
@@ -17,8 +12,12 @@ public class Calendar {
     @GeneratedValue
     @Id
     private Long id;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @Setter(AccessLevel.NONE)
     private Student student;
+    @OneToOne(cascade = CascadeType.ALL)
+    @Setter(AccessLevel.NONE)
+    private Teacher teacher;
     public Calendar(Long id) {
         this.id = id;
     }
@@ -27,9 +26,17 @@ public class Calendar {
         this.student = student;
     }
 
+    public Calendar(Teacher teacher){
+        this.teacher = teacher;
+    }
+
     public Calendar(Long id, Student student) {
+        this.id = id;
+        this.student = student;
     }
 
     public Calendar(Long id, Teacher teacher) {
+        this.id = id;
+        this.teacher = teacher;
     }
 }

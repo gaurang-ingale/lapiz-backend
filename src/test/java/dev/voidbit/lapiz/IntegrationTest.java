@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 
+import java.util.Objects;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class IntegrationTest {
     @Autowired
@@ -80,5 +82,36 @@ public class IntegrationTest {
 
         //assert
         Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
+
+    @Test
+    @DirtiesContext
+    public void getCalendarById_returnsStudentsCalendarWithCorrectProperties() throws Exception{
+        //arrange
+        Student student = new Student("Abra Cadabra");
+        Calendar calendar = new Calendar(1L, student);
+        calendarRepository.saveAndFlush(calendar);
+
+        //act
+        ResponseEntity<Calendar> response = restTemplate.getForEntity("/calendar/1", Calendar.class);
+
+        //assert
+        Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Assertions.assertThat(Objects.deepEquals(response.getBody(), calendar));
+    }
+
+    @Test
+    @DirtiesContext
+    public void getCalendarById_returnsTeachersCalendarWithCorrectProperties() throws Exception{
+        //arrange
+        Teacher teacher = new Teacher(1L, "Merlin Magic");
+        Calendar calendar = new Calendar(1L, teacher);
+        //act
+        ResponseEntity<Calendar> response = restTemplate.getForEntity("/calendar/1", Calendar.class);
+
+        //assert
+        Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Assertions.assertThat(Objects.deepEquals(calendar, response.getBody()));
+
     }
 }

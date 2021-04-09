@@ -26,4 +26,10 @@ public class Calendar {
     public Calendar(Student student) {
         this.student = student;
     }
+
+    public Calendar(Long id, Student student) {
+    }
+
+    public Calendar(Long id, Teacher teacher) {
+    }
 }

@@ -23,6 +23,9 @@ public class IntegrationTest {
     @Autowired
     private TeacherRepository teacherRepository;
 
+    @Autowired
+    private CalendarRepository calendarRepository;
+
     @Test
     @DirtiesContext
     public void getStudentByID_returnsStudent() throws Exception{
@@ -55,13 +58,30 @@ public class IntegrationTest {
     @Test
     @DirtiesContext
     public void getTeacherById_returnsTeacher() throws Exception{
+        //arrange
         teacherRepository.saveAndFlush(new Teacher(1L, "Merlin Magic"));
 
         //act
         ResponseEntity<Teacher> response = restTemplate.getForEntity("/teacher/1", Teacher.class);
 
+        //assert
         Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         Assertions.assertThat(response.getBody().getName()).isEqualTo("Merlin Magic");
         Assertions.assertThat(response.getBody().getId()).isEqualTo(1L);
+    }
+
+    @Test
+    @DirtiesContext
+    public void getCalendarById_returnsCalendar() throws Exception{
+        //arrange
+        Student student = new Student(1L, "Abra Cadabra");
+        calendarRepository.saveAndFlush(new Calendar(student));
+
+        //act
+        ResponseEntity<Calendar> response = restTemplate.getForEntity("/calendar/1", Calendar.class);
+
+        //assert
+        Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Assertions.assertThat(response.getBody().getStudent()).isEqualTo(student);
     }
 }

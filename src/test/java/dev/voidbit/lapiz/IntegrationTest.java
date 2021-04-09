@@ -73,15 +73,12 @@ public class IntegrationTest {
     @Test
     @DirtiesContext
     public void getCalendarById_returnsCalendar() throws Exception{
-        //arrange
-        Student student = new Student(1L, "Abra Cadabra");
-        calendarRepository.saveAndFlush(new Calendar(student));
+        calendarRepository.saveAndFlush(new Calendar());
 
         //act
         ResponseEntity<Calendar> response = restTemplate.getForEntity("/calendar/1", Calendar.class);
 
         //assert
         Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        Assertions.assertThat(response.getBody().getStudent()).isEqualTo(student);
     }
 }

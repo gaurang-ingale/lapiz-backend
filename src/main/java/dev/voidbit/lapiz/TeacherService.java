@@ -11,6 +11,10 @@ public class TeacherService {
     }
 
     public Teacher getTeacherById(Long id) {
-        return null;
+        Teacher teacher = teacherRepository.getTeacherById(id);
+        if(teacher != null){
+            return teacher;
+        }
+        throw new TeacherNotFoundException();
     }
 }

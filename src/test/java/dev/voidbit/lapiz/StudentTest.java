@@ -34,6 +34,6 @@ public class StudentTest {
     public void name_is_lastNameAppendedToFirstNameWithASpace() throws Exception{
         Student student = new Student("Abra", "Cadabra");
         Assertions.assertThat(student.getName()).isNotNull();
-        Assertions.assertThat(student.getName()).isEqualTo("Merlin Magic");
+        Assertions.assertThat(student.getName()).isEqualTo("Abra Cadabra");
     }
 }

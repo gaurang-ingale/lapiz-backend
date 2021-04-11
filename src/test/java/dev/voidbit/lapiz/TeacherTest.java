@@ -17,4 +17,25 @@ public class TeacherTest {
         Assertions.assertThat(new Teacher("some", "teacher").getLastName())
                 .hasSameClassAs(new String());
     }
+
+    @Test
+    public void firstName_isTheFirstSliceOfThe_name() throws Exception{
+        Teacher teacher = new Teacher("Merlin Magic");
+        Assertions.assertThat(teacher.getFirstName()).isNotNull();
+        Assertions.assertThat(teacher.getFirstName()).isEqualTo("Merlin");
+    }
+
+    @Test
+    public void lastName_isTheLastSliceOfThe_name() throws Exception{
+        Teacher teacher = new Teacher("Merlin Wizard Magic");
+        Assertions.assertThat(teacher.getLastName()).isNotNull();
+        Assertions.assertThat(teacher.getLastName()).isEqualTo("Magic");
+    }
+
+    @Test
+    public void name_is_lastNameAppendedToFirstNameWithASpace() throws Exception{
+        Teacher teacher = new Teacher("Merlin", "Magic");
+        Assertions.assertThat(teacher.getName()).isNotNull();
+        Assertions.assertThat(teacher.getName()).isEqualTo("Merlin Magic");
+    }
 }

@@ -33,6 +33,8 @@ public class CalendarCascadeTest {
         Student student = new Student("Abra Cadabra");
         Calendar calendar = new Calendar(student);
         testEntityManager.persistFlushFind(calendar);
+        Long studentId = testEntityManager.getId(student, Long.class);
+        Long calendarId = testEntityManager.getId(calendar, Long.class);
         //act and assert
         Calendar retrievedCalendar = calendarRepository.getCalendarById(1L);
         Assertions.assertThat(Objects.deepEquals(retrievedCalendar, calendar));
@@ -42,9 +44,9 @@ public class CalendarCascadeTest {
 
         calendarRepository.delete(retrievedCalendar);
         calendarRepository.flush();
-        retrievedCalendar = calendarRepository.getCalendarById(1L);
+        retrievedCalendar = calendarRepository.getCalendarById(calendarId);
         Assertions.assertThat(retrievedCalendar).isNull();
-        associatedStudent = studentRepository.getStudentById(1L);
+        associatedStudent = studentRepository.getStudentById(studentId);
         Assertions.assertThat(associatedStudent).isNotNull();
     }
 
@@ -55,6 +57,8 @@ public class CalendarCascadeTest {
         Teacher teacher = new Teacher("Merlin Magic");
         Calendar calendar = new Calendar(teacher);
         testEntityManager.persistFlushFind(calendar);
+        Long teacherId = testEntityManager.getId(teacher, Long.class);
+        Long calendarId = testEntityManager.getId(calendar, Long.class);
         //act and assert
         Calendar retrievedCalendar = calendarRepository.getCalendarById(1L);
         Assertions.assertThat(Objects.deepEquals(retrievedCalendar, calendar));
@@ -64,9 +68,9 @@ public class CalendarCascadeTest {
 
         calendarRepository.delete(retrievedCalendar);
         calendarRepository.flush();
-        retrievedCalendar = calendarRepository.getCalendarById(1L);
+        retrievedCalendar = calendarRepository.getCalendarById(calendarId);
         Assertions.assertThat(retrievedCalendar).isNull();
-        associatedTeacher = teacherRepository.getTeacherById(1L);
+        associatedTeacher = teacherRepository.getTeacherById(teacherId);
         Assertions.assertThat(associatedTeacher).isNotNull();
     }
 }

@@ -49,4 +49,10 @@ public class StudentTest {
         student.setLastName("name");
         Assertions.assertThat(student.getName()).isEqualTo("wrong name");
     }
+
+    @Test
+    public void student_hasACalendar() throws Exception{
+        Assertions.assertThat(Student.class).hasDeclaredFields("calendar");
+        Assertions.assertThat(new Student().getCalendar()).hasSameClassAs(new Calendar());
+    }
 }

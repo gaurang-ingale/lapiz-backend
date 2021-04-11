@@ -16,8 +16,26 @@ public class Student {
     @GeneratedValue
     private Long id;
     private String name;
+    private String firstName;
+    private String lastName;
 
     public Student(String name){
         this.name = name;
+    }
+
+    public Student(String firstName, String lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Student(Long id, String name){
+        this.id = id;
+        this.name = name;
+    }
+
+    public Student(Long id, String firstName, String lastName){
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 }

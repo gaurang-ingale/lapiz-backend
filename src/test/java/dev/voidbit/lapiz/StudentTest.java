@@ -36,4 +36,17 @@ public class StudentTest {
         Assertions.assertThat(student.getName()).isNotNull();
         Assertions.assertThat(student.getName()).isEqualTo("Abra Cadabra");
     }
+
+    @Test
+    public void settersForNames_doNotDevelopInconsistencies() throws Exception{
+        Student student = new Student("Abra", "Cadabra");
+        student.setName("wrong name");
+        Assertions.assertThat(student.getFirstName()).isEqualTo("wrong");
+        Assertions.assertThat(student.getLastName()).isEqualTo("name");
+
+        student = new Student("Abra Cadabra");
+        student.setFirstName("wrong");
+        student.setLastName("name");
+        Assertions.assertThat(student.getName()).isEqualTo("wrong name");
+    }
 }

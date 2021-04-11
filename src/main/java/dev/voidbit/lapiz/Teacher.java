@@ -55,4 +55,19 @@ public class Teacher {
         this.lastName = lastName;
         composeNameFromFirstAndLastNames();
     }
+
+    public void setName(String name){
+        this.name = name;
+        seperateFirstAndLastNamesFromName();
+    }
+
+    public void setFirstName(String firstName){
+        this.firstName = firstName;
+        composeNameFromFirstAndLastNames();
+    }
+
+    public void setLastName(String lastName){
+        this.lastName = lastName;
+        composeNameFromFirstAndLastNames();
+    }
 }

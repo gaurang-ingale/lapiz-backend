@@ -14,10 +14,10 @@ public class Calendar {
     private Long id;
     @OneToOne(cascade = CascadeType.ALL)
     @Setter(AccessLevel.NONE)
-    private Student student;
+    private Student student = null;
     @OneToOne(cascade = CascadeType.ALL)
     @Setter(AccessLevel.NONE)
-    private Teacher teacher;
+    private Teacher teacher = null;
     public Calendar(Long id) {
         this.id = id;
     }

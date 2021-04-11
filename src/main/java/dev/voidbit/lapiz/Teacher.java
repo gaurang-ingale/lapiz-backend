@@ -19,8 +19,26 @@ public class Teacher {
     @Id
     private Long id;
     private String name;
+    private String firstName;
+    private String lastName;
 
     public Teacher(String name) {
         this.name = name;
+    }
+
+    public Teacher(Long id, String name){
+        this.id = id;
+        this.name = name;
+    }
+
+    public Teacher(Long id, String firstName, String lastName){
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Teacher(String firstName, String lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 }

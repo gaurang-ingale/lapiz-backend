@@ -14,6 +14,7 @@ public class Calendar {
     private Long id;
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @Setter(AccessLevel.NONE)
+    @JoinColumn(name="calendar")
     private Student student = null;
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @Setter(AccessLevel.NONE)

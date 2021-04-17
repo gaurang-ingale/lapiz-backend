@@ -10,7 +10,7 @@ public class SubjectTest {
     @Test
     public void subject_hasAName() throws Exception{
         Assertions.assertThat(Subject.class).hasDeclaredFields("name");
-        Assertions.assertThat(new Subject().getName()).hasSameClassAs(new String());
+        Assertions.assertThat(new Subject("Computer Science").getName()).hasSameClassAs(new String());
     }
 
     @Test
@@ -28,6 +28,6 @@ public class SubjectTest {
     @Test
     public void subject_hasADescription() throws Exception {
         Assertions.assertThat(Subject.class).hasDeclaredFields("description");
-        Assertions.assertThat(new Subject().getDescription()).hasSameClassAs(new String());
+        Assertions.assertThat(new Subject("Computer Science", "The study of computers and mathematics").getDescription()).hasSameClassAs(new String());
     }
 }

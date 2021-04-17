@@ -1,7 +1,10 @@
 package dev.voidbit.lapiz;
 
+import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 public class TeacherTest {
     @Test
@@ -50,5 +53,17 @@ public class TeacherTest {
         teacher.setFirstName("wrong");
         teacher.setLastName("name");
         Assertions.assertThat(teacher.getName()).isEqualTo("wrong name");
+    }
+
+    @Test
+    public void teacher_hasACalendar() throws Exception{
+        Assertions.assertThat(Teacher.class).hasDeclaredFields("calendar");
+        Assertions.assertThat(new Teacher().getCalendar()).hasSameClassAs(new Calendar());
+    }
+
+    @Test
+    public void teacher_hasSubjects() throws Exception{
+        Assertions.assertThat(Teacher.class).hasDeclaredFields("subjects");
+        Assertions.assertThat(new Teacher().getSubjects()).hasSameClassAs(new ArrayList<Subject>());
     }
 }

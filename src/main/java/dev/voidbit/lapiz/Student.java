@@ -16,6 +16,7 @@ import java.util.List;
 public class Student {
     @Id
     @GeneratedValue
+    @Column(name = "studentId")
     private Long id;
     private String name;
     private String firstName;
@@ -24,7 +25,12 @@ public class Student {
     @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class,
             property = "id")
     private Calendar calendar = new Calendar(this);
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinTable(
+            name = "Student_Subject",
+            joinColumns = { @JoinColumn(name="studentId")},
+            inverseJoinColumns = { @JoinColumn(name = "subjectId")}
+    )
     private List<Subject> subjects = new ArrayList<>();
 
     private void composeNameFromFirstAndLastNames(){

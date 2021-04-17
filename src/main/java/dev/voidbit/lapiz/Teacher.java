@@ -19,6 +19,7 @@ import java.util.List;
 public class Teacher {
     @GeneratedValue
     @Id
+    @Column(name = "teacherId")
     private Long id;
     private String name;
     private String firstName;
@@ -26,7 +27,12 @@ public class Teacher {
     @OneToOne(mappedBy = "teacher", cascade = CascadeType.ALL)
     @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id")
     private Calendar calendar = new Calendar(this);
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinTable(
+            name = "Student_Teacher",
+            joinColumns = { @JoinColumn(name="teacherId")},
+            inverseJoinColumns = { @JoinColumn(name = "subjectId")}
+    )
     private List<Subject> subjects = new ArrayList<>();
 
     private void composeNameFromFirstAndLastNames(){

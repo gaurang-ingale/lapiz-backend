@@ -12,11 +12,11 @@ public class Calendar {
     @GeneratedValue
     @Id
     private Long id;
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @Setter(AccessLevel.NONE)
     @JoinColumn(name="calendar", insertable = false, updatable = false)
     private Student student = null;
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @Setter(AccessLevel.NONE)
     @JoinColumn(name="calendar", insertable = false, updatable = false)
     private Teacher teacher = null;

@@ -3,6 +3,8 @@ package dev.voidbit.lapiz;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 public class StudentTest {
     @Test
     public void student_hasAFirstName() throws Exception{
@@ -54,5 +56,11 @@ public class StudentTest {
     public void student_hasACalendar() throws Exception{
         Assertions.assertThat(Student.class).hasDeclaredFields("calendar");
         Assertions.assertThat(new Student().getCalendar()).hasSameClassAs(new Calendar());
+    }
+
+    @Test
+    public void student_hasSubjects() throws Exception{
+        Assertions.assertThat(Student.class).hasDeclaredFields("subjects");
+        Assertions.assertThat(new Student().getSubjects()).hasSameClassAs(new ArrayList<Subject>());
     }
 }

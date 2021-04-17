@@ -1,13 +1,15 @@
 package dev.voidbit.lapiz;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -21,6 +23,11 @@ public class Teacher {
     private String name;
     private String firstName;
     private String lastName;
+    @OneToOne(mappedBy = "teacher", cascade = CascadeType.ALL)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id")
+    private Calendar calendar = new Calendar(this);
+    @ManyToMany
+    private List<Subject> subjects = new ArrayList<>();
 
     private void composeNameFromFirstAndLastNames(){
         this.name = this.firstName + " " + this.lastName;

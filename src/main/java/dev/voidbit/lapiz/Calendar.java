@@ -14,10 +14,11 @@ public class Calendar {
     private Long id;
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @Setter(AccessLevel.NONE)
-    @JoinColumn(name="calendar")
+    @JoinColumn(name="calendar", insertable = false, updatable = false)
     private Student student = null;
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @Setter(AccessLevel.NONE)
+    @JoinColumn(name="calendar", insertable = false, updatable = false)
     private Teacher teacher = null;
     public Calendar(Long id) {
         this.id = id;

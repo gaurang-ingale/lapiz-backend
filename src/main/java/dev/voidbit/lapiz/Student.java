@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -22,6 +24,8 @@ public class Student {
     @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class,
             property = "id")
     private Calendar calendar = new Calendar(this);
+    @ManyToMany
+    private List<Subject> subjects = new ArrayList<>();
 
     private void composeNameFromFirstAndLastNames(){
         this.name = this.firstName + " " + this.lastName;

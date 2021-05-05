@@ -25,7 +25,7 @@ public class Subject {
     private List<Teacher> teachers = new ArrayList<>();
     @ManyToMany(mappedBy = "subjects")
     private List<Student> students = new ArrayList<>();
-    @OneToMany()
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
     private List<Topic> topics = new ArrayList<>();
 
     public Subject(String name){

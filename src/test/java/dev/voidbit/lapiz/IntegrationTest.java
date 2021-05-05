@@ -28,6 +28,9 @@ public class IntegrationTest {
     @Autowired
     private CalendarRepository calendarRepository;
 
+    @Autowired
+    private TopicRepository topicRepository;
+
     @Test
     @DirtiesContext
     public void getStudentByID_returnsStudent() throws Exception{
@@ -127,5 +130,16 @@ public class IntegrationTest {
         Assertions.assertThat(calendar2.getTeacher()).isNull();
     }
 
+    @Test
+    @DirtiesContext
+    public void getTopicById_returnsTopic() throws Exception{
+        //arrange
+        Topic topic = new Topic();
+        topicRepository.saveAndFlush(topic);
+        //act
+        ResponseEntity<Topic> response = restTemplate.getForEntity("/topic/1", Topic.class);
+        //assert
+        Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
 
 }

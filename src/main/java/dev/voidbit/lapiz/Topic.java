@@ -15,6 +15,10 @@ public class Topic {
     @GeneratedValue
     Long id;
 
+    private String name;
+
+    private String description;
+
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "subjectId", nullable = false)
     private Subject subject;
@@ -29,8 +33,11 @@ public class Topic {
     }
 
     public Topic(String name) {
+        this.name = name;
     }
 
     public Topic(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 }

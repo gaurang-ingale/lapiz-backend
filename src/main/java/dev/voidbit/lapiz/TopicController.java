@@ -1,9 +1,8 @@
 package dev.voidbit.lapiz;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class TopicController {
@@ -13,5 +12,11 @@ public class TopicController {
     @GetMapping("/topic/{id}")
     private Topic getTopicById(@PathVariable Long id){
         return topicService.getTopicById(id);
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    private void TopicNotFoundExceptionHandler(TopicNotFoundException e){
+
     }
 }

@@ -1,6 +1,5 @@
 package dev.voidbit.lapiz;
 
-import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -34,4 +34,16 @@ public class TopicControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").value(1L));
     }
+
+    @Test
+    public void getTopicById_notFound() throws Exception{
+        //arrange
+        given(topicService.getTopicById(anyLong()))
+                .willThrow(new TopicNotFoundException());
+
+        //act and assert
+        mockMvc.perform(MockMvcRequestBuilders.get("/topic/1"))
+                .andExpect(status().isNotFound());
+
+    }
 }

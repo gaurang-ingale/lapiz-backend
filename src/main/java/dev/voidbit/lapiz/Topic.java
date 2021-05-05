@@ -27,4 +27,10 @@ public class Topic {
         this.id = id;
         this.subject = new Subject();
     }
+
+    public Topic(String name) {
+    }
+
+    public Topic(String name, String description) {
+    }
 }

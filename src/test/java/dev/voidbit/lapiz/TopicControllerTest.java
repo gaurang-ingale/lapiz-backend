@@ -28,7 +28,7 @@ public class TopicControllerTest {
     public void getTopicId_returnsTopic() throws Exception{
         //arrange
         given(topicService.getTopicById(anyLong()))
-                .willReturn(new Topic());
+                .willReturn(new Topic(1L));
         //act and assert
         mockMvc.perform(MockMvcRequestBuilders.get("/topic/1"))
                 .andExpect(status().isOk())

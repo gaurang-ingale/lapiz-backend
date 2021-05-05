@@ -10,7 +10,12 @@ public class TopicService {
         this.topicRepository = topicRepository;
     }
 
-    public Topic getTopicById(long anyLong) {
-        return null;
+    public Topic getTopicById(Long id) {
+        Topic topic = this.topicRepository.getTopicById(id);
+        if(topic == null){
+            throw new TopicNotFoundException();
+        }else{
+            return topic;
+        }
     }
 }

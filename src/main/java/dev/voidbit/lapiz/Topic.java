@@ -15,7 +15,6 @@ public class Topic {
     @Id
     @Setter(AccessLevel.NONE)
     @GeneratedValue
-
     Long id;
 
     private String name;

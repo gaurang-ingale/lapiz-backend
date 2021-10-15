@@ -21,15 +21,15 @@ public class Subject {
 
     @ManyToMany(mappedBy = "subjects")
     @Setter(AccessLevel.NONE)
-    private final List<Teacher> teachers = new ArrayList<>();
+    private List<Teacher> teachers = new ArrayList<>();
 
     @ManyToMany(mappedBy = "subjects")
     @Setter(AccessLevel.NONE)
-    private final List<Student> students = new ArrayList<>();
+    private List<Student> students = new ArrayList<>();
 
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
     @Setter(AccessLevel.NONE)
-    private final List<Topic> topics = new ArrayList<>();
+    private List<Topic> topics = new ArrayList<>();
 
     public Subject(String name){
         this.name = name;

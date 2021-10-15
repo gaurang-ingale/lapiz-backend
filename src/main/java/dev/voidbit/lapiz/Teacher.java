@@ -33,7 +33,7 @@ public class Teacher {
             inverseJoinColumns = { @JoinColumn(name = "subjectId")}
     )
     @Setter(AccessLevel.NONE)
-    private final List<Subject> subjects = new ArrayList<>();
+    private List<Subject> subjects = new ArrayList<>();
 
     private void composeNameFromFirstAndLastNames(){
         this.name = this.firstName + " " + this.lastName;

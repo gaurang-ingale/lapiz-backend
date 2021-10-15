@@ -1,9 +1,6 @@
 package dev.voidbit.lapiz;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,12 +18,18 @@ public class Subject {
     private Long id;
     private String name;
     private String description;
+
     @ManyToMany(mappedBy = "subjects")
-    private List<Teacher> teachers = new ArrayList<>();
+    @Setter(AccessLevel.NONE)
+    private final List<Teacher> teachers = new ArrayList<>();
+
     @ManyToMany(mappedBy = "subjects")
-    private List<Student> students = new ArrayList<>();
+    @Setter(AccessLevel.NONE)
+    private final List<Student> students = new ArrayList<>();
+
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
-    private List<Topic> topics = new ArrayList<>();
+    @Setter(AccessLevel.NONE)
+    private final List<Topic> topics = new ArrayList<>();
 
     public Subject(String name){
         this.name = name;
@@ -40,11 +43,5 @@ public class Subject {
     public Subject(Long id, String name){
         this.id = id;
         this.name = name;
-    }
-
-    public Subject(Long id, String name, String description){
-        this.id = id;
-        this.name = name;
-        this.description = description;
     }
 }

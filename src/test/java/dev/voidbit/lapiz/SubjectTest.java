@@ -43,7 +43,7 @@ public class SubjectTest {
     public void subjects_topicsCannotBeReinitialised() throws Exception{
         try{
             Assertions.assertThat(Subject.class).hasDeclaredMethods("setTopics");
-        }catch(Exception e){
+        }catch(Throwable e){
             return;
         }
         Assertions.fail("Subject should not have a setTopics method!");
@@ -59,7 +59,7 @@ public class SubjectTest {
     public void subjects_studentsCannotBeReinitialised() throws Exception{
         try{
             Assertions.assertThat(Subject.class).hasDeclaredMethods("setStudents");
-        }catch (Exception e){
+        }catch (Throwable e){
             return;
         }
         Assertions.fail("Subject should not have a setStudents method!");
@@ -75,7 +75,7 @@ public class SubjectTest {
     public void subjects_teachersCannotBeReinitialised() throws Exception{
         try{
             Assertions.assertThat(Subject.class).hasDeclaredMethods("setTeachers");
-        }catch(Exception e){
+        }catch(Throwable e){
             return;
         }
         Assertions.fail("Subject should not have a setTeachers method!");

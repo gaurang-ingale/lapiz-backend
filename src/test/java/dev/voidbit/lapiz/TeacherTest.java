@@ -1,9 +1,12 @@
 package dev.voidbit.lapiz;
 
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 
 public class TeacherTest {
@@ -65,5 +68,21 @@ public class TeacherTest {
     public void teacher_hasSubjects() throws Exception{
         Assertions.assertThat(Teacher.class).hasDeclaredFields("subjects");
         Assertions.assertThat(new Teacher().getSubjects()).hasSameClassAs(new ArrayList<Subject>());
+    }
+
+    @Test
+    public void teachers_subjectsCannotBeReinitialised() throws Exception{
+        try{
+            Assertions.assertThat(Teacher.class).hasDeclaredMethods("setSubjects");
+        }catch(Throwable t){
+            return;
+        }
+        Assertions.fail("Teacher should not have a setSubjects method!");
+    }
+
+    @Test
+    public void teachers_subjectsShouldBeFinal() throws Exception{
+        Field subjectsField = Teacher.class.getDeclaredField("subjects");
+        Assertions.assertThat(Modifier.isFinal(subjectsField.getModifiers())).isTrue();
     }
 }

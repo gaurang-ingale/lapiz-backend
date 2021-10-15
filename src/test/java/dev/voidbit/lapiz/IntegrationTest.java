@@ -12,6 +12,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import java.util.Objects;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@DirtiesContext
 public class IntegrationTest {
     @Autowired
     private TestRestTemplate restTemplate;

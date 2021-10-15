@@ -20,16 +20,14 @@ public class Topic {
     private String description;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "subjectId", nullable = false)
+    @JoinColumn(name = "subjectId", nullable = true)
     private Subject subject;
 
     public Topic(){
-        this.subject = new Subject();
     }
 
     public Topic(Long id){
         this.id = id;
-        this.subject = new Subject();
     }
 
     public Topic(String name) {

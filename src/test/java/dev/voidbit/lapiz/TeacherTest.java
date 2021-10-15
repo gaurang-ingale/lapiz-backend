@@ -81,8 +81,8 @@ public class TeacherTest {
     }
 
     @Test
-    public void teachers_subjectsShouldBeFinal() throws Exception{
+    public void teachers_subjectsShouldNotBeFinal() throws Exception{
         Field subjectsField = Teacher.class.getDeclaredField("subjects");
-        Assertions.assertThat(Modifier.isFinal(subjectsField.getModifiers())).isTrue();
+        Assertions.assertThat(Modifier.isFinal(subjectsField.getModifiers())).isFalse();
     }
 }

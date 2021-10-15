@@ -50,9 +50,9 @@ public class SubjectTest {
     }
 
     @Test
-    public void subjects_topicsShouldBeFinal() throws Exception{
+    public void subjects_topicsShouldNotBeFinal() throws Exception{
         Field topicsField = Subject.class.getDeclaredField("topics");
-        Assertions.assertThat(Modifier.isFinal(topicsField.getModifiers())).isTrue();
+        Assertions.assertThat(Modifier.isFinal(topicsField.getModifiers())).isFalse();
     }
 
     @Test
@@ -66,9 +66,9 @@ public class SubjectTest {
     }
 
     @Test
-    public void subjects_studentsShouldBeFinal() throws Exception{
+    public void subjects_studentsShouldNotBeFinal() throws Exception{
         Field studentsField = Subject.class.getDeclaredField("students");
-        Assertions.assertThat(Modifier.isFinal(studentsField.getModifiers())).isTrue();
+        Assertions.assertThat(Modifier.isFinal(studentsField.getModifiers())).isFalse();
     }
 
     @Test
@@ -82,8 +82,8 @@ public class SubjectTest {
     }
 
     @Test
-    public void subjects_teachersShouldBeFinal() throws Exception{
+    public void subjects_teachersShouldNotBeFinal() throws Exception{
         Field teachersField = Subject.class.getDeclaredField("teachers");
-        Assertions.assertThat(Modifier.isFinal(teachersField.getModifiers())).isTrue();
+        Assertions.assertThat(Modifier.isFinal(teachersField.getModifiers())).isFalse();
     }
 }
